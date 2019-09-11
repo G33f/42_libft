@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpoudre <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 21:27:33 by wpoudre           #+#    #+#             */
-/*   Updated: 2019/09/10 21:27:36 by wpoudre          ###   ########.fr       */
+/*   Created: 2019/09/11 18:20:18 by wpoudre           #+#    #+#             */
+/*   Updated: 2019/09/11 18:20:21 by wpoudre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *str1, const char *str2, size_t n)
+int			ft_memcmp(const void *arr1, const void *arr2, size_t n)
 {
-	size_t i;
+	size_t	i;
+	char	*s1;
+	char	*s2;
 
 	i = 0;
-	if (n <= 0)
-		return (str1);
-	while (i != n)
+	s1 = (char *)arr1;
+	s2 = (char *)arr2;
+	if (n <= i)
+		return (0);
+	while (s1[i] && s2[i] && s1[i] == s2[i] && i != n)
 	{
-		if (str2[i] == '\0')
-		{
-			while (i != n)
-			{
-				str1[i] = '\0';
-				i++;
-			}
-			return (str1);
-		}
-		str1[i] = str2[i];
 		i++;
+		if (i == n && s2[i] != s1[i])
+			return (0);
 	}
-	return (str1);
+	if (s2[i] == '\0' && s1[i])
+		return (1);
+	else
+		return (s1[i] - s2[i]);
 }

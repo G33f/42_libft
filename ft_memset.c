@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpoudre <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 21:27:33 by wpoudre           #+#    #+#             */
-/*   Updated: 2019/09/10 21:27:36 by wpoudre          ###   ########.fr       */
+/*   Created: 2019/09/08 15:50:47 by wpoudre           #+#    #+#             */
+/*   Updated: 2019/09/08 15:50:57 by wpoudre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *str1, const char *str2, size_t n)
+void		*ft_memset(void *str, int nb, size_t size)
 {
-	size_t i;
+	char	*new;
+	size_t	i;
 
 	i = 0;
-	if (n <= 0)
-		return (str1);
-	while (i != n)
+	new = (char *)str;
+	if (!str)
+		return (NULL);
+	while (i < size)
 	{
-		if (str2[i] == '\0')
-		{
-			while (i != n)
-			{
-				str1[i] = '\0';
-				i++;
-			}
-			return (str1);
-		}
-		str1[i] = str2[i];
+		new[i] = nb;
 		i++;
 	}
-	return (str1);
+	return (str);
 }
