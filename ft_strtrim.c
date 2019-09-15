@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpoudre <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 18:04:38 by wpoudre           #+#    #+#             */
-/*   Updated: 2019/09/11 18:04:41 by wpoudre          ###   ########.fr       */
+/*   Created: 2019/09/15 13:00:44 by wpoudre           #+#    #+#             */
+/*   Updated: 2019/09/15 13:00:47 by wpoudre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memchr(const void *arr, int c, size_t n)
+char		*ft_strtrim(char const *s)
 {
+	size_t	len;
+	char	*chg;
 	char	*str;
-	void	*ret;
-	size_t	i;
 
-	i = 0;
-	str = (char *)arr;
-	while (i < n)
-	{
-		if (str[i] == c)
-		{
-			ret = (void *)&str[i];
-			return (ret);
-		}
-		i++;
-	}
-	return (NULL);
+	if (!s)
+		return (NULL);
+	len = ft_strlen(s);
+	chg = (char *)s;
+	len--;
+	while (chg[len] == ' ' || chg[len] == '\n' || chg[len] == '\t')
+		len--;
+	chg[len + 1] = '\0';
+	while (*s == ' ' || *s == '\n' || *s == '\t')
+		s++;
+	if (!(str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1))))
+		return (0);
+	return (ft_strcpy(str, s));
 }

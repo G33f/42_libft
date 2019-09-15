@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpoudre <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 18:04:38 by wpoudre           #+#    #+#             */
-/*   Updated: 2019/09/11 18:04:41 by wpoudre          ###   ########.fr       */
+/*   Created: 2019/09/15 15:11:23 by wpoudre           #+#    #+#             */
+/*   Updated: 2019/09/15 15:11:26 by wpoudre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memchr(const void *arr, int c, size_t n)
+char				*ft_itoa(int n)
 {
-	char	*str;
-	void	*ret;
-	size_t	i;
+	size_t			i;
+	char			*str;
+	unsigned int	ncp;
+	int				c;
 
-	i = 0;
-	str = (char *)arr;
-	while (i < n)
+	i = 1;
+	c = n;
+	while (c /= 10)
+		i++;
+	ncp = n;
+	if (n < 0)
 	{
-		if (str[i] == c)
-		{
-			ret = (void *)&str[i];
-			return (ret);
-		}
+		ncp = -n;
 		i++;
 	}
-	return (NULL);
+	if (!(str = ft_strnew(i)))
+		return (NULL);
+	str[--i] = ncp % 10 + '0';
+	while (ncp /= 10)
+		str[--i] = ncp % 10 + '0';
+	if (n < 0)
+		*(str) = '-';
+	return (str);
 }

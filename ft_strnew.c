@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpoudre <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 18:04:38 by wpoudre           #+#    #+#             */
-/*   Updated: 2019/09/11 18:04:41 by wpoudre          ###   ########.fr       */
+/*   Created: 2019/09/14 09:15:59 by wpoudre           #+#    #+#             */
+/*   Updated: 2019/09/14 09:16:02 by wpoudre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memchr(const void *arr, int c, size_t n)
+char		*ft_strnew(size_t size)
 {
-	char	*str;
-	void	*ret;
-	size_t	i;
+	char	*new;
 
-	i = 0;
-	str = (char *)arr;
-	while (i < n)
-	{
-		if (str[i] == c)
-		{
-			ret = (void *)&str[i];
-			return (ret);
-		}
-		i++;
-	}
-	return (NULL);
+	new = malloc(sizeof(char) * size);
+	if (!new)
+		return (NULL);
+	ft_bzero(new, size);
+	return (new);
 }

@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpoudre <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 18:04:38 by wpoudre           #+#    #+#             */
-/*   Updated: 2019/09/11 18:04:41 by wpoudre          ###   ########.fr       */
+/*   Created: 2019/09/13 14:52:13 by wpoudre           #+#    #+#             */
+/*   Updated: 2019/09/13 14:52:19 by wpoudre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memchr(const void *arr, int c, size_t n)
+size_t		ft_strlcat(char *dst, const char *src, size_t size)
 {
-	char	*str;
-	void	*ret;
 	size_t	i;
 
-	i = 0;
-	str = (char *)arr;
-	while (i < n)
-	{
-		if (str[i] == c)
-		{
-			ret = (void *)&str[i];
-			return (ret);
-		}
-		i++;
-	}
-	return (NULL);
+	i = ft_strlen(dst);
+	if (size > i)
+		ft_strncat(dst, src, (size - i - 1));
+	if (size < i)
+		return (size + ft_strlen(src));
+	return (i + ft_strlen(src));
 }

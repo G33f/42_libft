@@ -12,18 +12,18 @@
 
 #include "libft.h"
 
-void		*ft_memcpy(void *dest, const void *source, size_t n)
+void				*ft_memcpy(void *dest, const void *source, size_t n)
 {
-	char	*str1;
-	char	*str2;
-	size_t	i;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			i;
 
-	str1 = (char *)dest;
-	str2 = (char *)source;
+	str1 = (unsigned char *)dest;
+	str2 = (unsigned char *)source;
 	i = 0;
 	if (n <= 0)
 		return (str1);
-	while (i != n)
+	while (i < n)
 	{
 		str1[i] = str2[i];
 		i++;

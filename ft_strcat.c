@@ -21,7 +21,7 @@ char	*ft_strcat(char *str1, const char *str2)
 	j = 0;
 	while (str1[i])
 		i++;
-	while (str2[j])
+	while (str2[j] != '\0')
 	{
 		str1[i] = str2[j];
 		i++;

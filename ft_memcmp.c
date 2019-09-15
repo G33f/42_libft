@@ -23,7 +23,7 @@ int			ft_memcmp(const void *arr1, const void *arr2, size_t n)
 	s2 = (char *)arr2;
 	if (n <= i)
 		return (0);
-	while (s1[i] && s2[i] && s1[i] == s2[i] && i != n)
+	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n)
 	{
 		i++;
 		if (i == n && s2[i] != s1[i])

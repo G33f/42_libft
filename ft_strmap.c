@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpoudre <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 18:04:38 by wpoudre           #+#    #+#             */
-/*   Updated: 2019/09/11 18:04:41 by wpoudre          ###   ########.fr       */
+/*   Created: 2019/09/15 10:40:22 by wpoudre           #+#    #+#             */
+/*   Updated: 2019/09/15 10:40:26 by wpoudre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memchr(const void *arr, int c, size_t n)
+char		*ft_strmap(char const *s, char (*f)(char))
 {
-	char	*str;
-	void	*ret;
-	size_t	i;
+	char	*new;
+	int		i;
 
+	if (!s || !f)
+		return (0);
+	if (!(new = (char *)malloc(sizeof(char) * (ft_strlen(s)))))
+		return (NULL);
 	i = 0;
-	str = (char *)arr;
-	while (i < n)
+	while (s[i])
 	{
-		if (str[i] == c)
-		{
-			ret = (void *)&str[i];
-			return (ret);
-		}
+		new[i] = f(s[i]);
 		i++;
 	}
-	return (NULL);
+	new[i] = '\0';
+	return (new);
 }

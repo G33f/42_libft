@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpoudre <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 18:04:38 by wpoudre           #+#    #+#             */
-/*   Updated: 2019/09/11 18:04:41 by wpoudre          ###   ########.fr       */
+/*   Created: 2019/09/13 22:10:35 by wpoudre           #+#    #+#             */
+/*   Updated: 2019/09/13 22:10:39 by wpoudre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memchr(const void *arr, int c, size_t n)
+char		*ft_strnstr(const char *str1, const char *str2, size_t len)
 {
-	char	*str;
-	void	*ret;
 	size_t	i;
+	char	*spy;
 
 	i = 0;
-	str = (char *)arr;
-	while (i < n)
+	spy = ft_strstr(str1, str2);
+	while (i < len)
 	{
-		if (str[i] == c)
+		if (spy == &str1[i])
 		{
-			ret = (void *)&str[i];
-			return (ret);
+			if (i + ft_strlen(str2) < len)
+				return ((char *)&str1[i]);
+			else
+				return (NULL);
 		}
-		i++;
+		else
+			i++;
 	}
 	return (NULL);
 }
