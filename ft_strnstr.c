@@ -15,21 +15,24 @@
 char		*ft_strnstr(const char *str1, const char *str2, size_t len)
 {
 	size_t	i;
-	char	*spy;
+	size_t	j;
 
+	if (*str2 == '\0')
+		return ((char *)str1);
 	i = 0;
-	spy = ft_strstr(str1, str2);
-	while (i < len)
+	while (str1[i] != '\0' && i < len)
 	{
-		if (spy == &str1[i])
+		if (str1[i] == str2[0])
 		{
-			if (i + ft_strlen(str2) < len)
-				return ((char *)&str1[i]);
-			else
-				return (NULL);
+			j = 1;
+			while (str1[i + j] == str2[j] && str2[j] != '\0' && i + j < len)
+			{
+				j++;
+			}
+			if (str2[j] == '\0')
+				return ((char *)(str1 + i));
 		}
-		else
-			i++;
+		i++;
 	}
 	return (NULL);
 }

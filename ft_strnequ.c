@@ -17,12 +17,15 @@ int			ft_strnequ(char const *s1, char const *s2, size_t n)
 	char	*new1;
 	char	*new2;
 
-	if (ft_strlen(s1) != ft_strlen(s2))
-		return (0);
-	new1 = (char *)s1;
-	new2 = (char *)s2;
-	if (ft_strncmp(new1, new2, n) == 0)
-		return (2);
+	if (s1 && s2)
+	{
+		new1 = (char *)s1;
+		new2 = (char *)s2;
+		if (ft_strncmp(new1, new2, n) == 0)
+			return (1);
+		else
+			return (0);
+	}
 	else
 		return (0);
 }

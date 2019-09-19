@@ -12,56 +12,45 @@
 
 #include "libft.h"
 
-static char	*skip_c(char *s, char c)
+static	int	ft_len(char const *s, char c)
 {
-	while (*s == c)
-		s++;
-	return (s);
-}
-
-static char	*creat_s(char *s, char c)
-{
-	size_t	i;
-	char	*new;
+	int		i;
+	int		len;
 
 	i = 0;
-	while (s[i] != c)
+	len = 0;
+	while (s[i] == c)
 		i++;
-	new = ft_strnew(i);
-	if (!new)
-		return (NULL);
-	new = ft_strncat(new, s, i);
-	return (new);
+	while (s[i] != c && s[i] != '\0')
+	{
+		i++;
+		len++;
+	}
+	return (len);
 }
 
 char		**ft_strsplit(char const *s, char c)
 {
+	int		i;
+	int		j;
+	int		l;
 	char	**str;
-	char	*tm;
-	size_t	i;
-	int		x;
 
-	i = 0;
-	tm = (char *)s;
-	while (*tm)
-	{
-		while (*tm != c)
-			tm++;
-		i++;
-		tm = skip_c(tm, c);
-	}
-	tm = (char *)s;
-	if (!(str = (char **)malloc(sizeof(char *) * (i + 1))))
+	if (!s || !(str = (char **)malloc(sizeof(str) * (ft_cu_wards(s, c) + 1))))
 		return (NULL);
-	x = 0;
-	while (str[x])
+	i = -1;
+	j = 0;
+	while (++i < ft_cu_wards(s, c))
 	{
-		str[x] = creat_s(tm, c);
-		if (!str[x])
+		l = 0;
+		if (!(str[i] = ft_strnew(ft_len(&s[j], c) + 1)))
 			return (NULL);
-		while (*tm != c)
-			tm++;
-		x++;
+		while (s[j] == c)
+			j++;
+		while (s[j] != c && s[j])
+			str[i][l++] = s[j++];
+		str[i][l] = '\0';
 	}
+	str[i] = 0;
 	return (str);
 }

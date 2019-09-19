@@ -12,23 +12,45 @@
 
 #include "libft.h"
 
-char		*ft_strtrim(char const *s)
+static size_t	ft_newlen(char const *s)
 {
-	size_t	len;
-	char	*chg;
-	char	*str;
+	size_t		len;
 
-	if (!s)
-		return (NULL);
 	len = ft_strlen(s);
-	chg = (char *)s;
-	len--;
-	while (chg[len] == ' ' || chg[len] == '\n' || chg[len] == '\t')
+	while (*s == ' ' || *s == '\n' || *s == '\t')
+	{
 		len--;
-	chg[len + 1] = '\0';
+		s++;
+	}
+	while (*s != '\0')
+		s++;
+	s--;
+	if (len)
+		while (*s == ' ' || *s == '\n' || *s == '\t')
+		{
+			len--;
+			s--;
+		}
+	return (len);
+}
+
+char			*ft_strtrim(char const *s)
+{
+	size_t		len;
+	char		*new;
+	char		*res;
+
+	if (s == NULL)
+		return (NULL);
+	len = ft_newlen(s);
+	new = (char *)malloc(sizeof(char) * (len + 1));
+	if (new == NULL)
+		return (NULL);
+	res = new;
 	while (*s == ' ' || *s == '\n' || *s == '\t')
 		s++;
-	if (!(str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1))))
-		return (0);
-	return (ft_strcpy(str, s));
+	while (len--)
+		*new++ = *s++;
+	*new = '\0';
+	return (res);
 }

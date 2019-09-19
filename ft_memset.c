@@ -19,8 +19,6 @@ void		*ft_memset(void *str, int nb, size_t size)
 
 	i = 0;
 	new = (char *)str;
-	if (!str)
-		return (NULL);
 	while (i < size)
 	{
 		new[i] = nb;

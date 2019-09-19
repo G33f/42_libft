@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_cu_wards.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpoudre <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 01:34:09 by wpoudre           #+#    #+#             */
-/*   Updated: 2019/09/14 01:34:13 by wpoudre          ###   ########.fr       */
+/*   Created: 2019/09/16 17:42:33 by wpoudre           #+#    #+#             */
+/*   Updated: 2019/09/16 17:42:36 by wpoudre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int ch)
+int		ft_cu_wards(char const *s, char c)
 {
-	if (ft_isalpha(ch) != 0 || ft_isdigit(ch) != 0)
-		return (1);
-	else
-		return (0);
+	int	cu;
+	int	i;
+
+	i = 0;
+	cu = 0;
+	while (s[i])
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i] != c && s[i] != '\0')
+			cu++;
+		while (s[i] != c && s[i] != '\0')
+			i++;
+	}
+	return (cu);
 }
