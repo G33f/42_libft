@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpoudre <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 05:03:38 by wpoudre           #+#    #+#             */
-/*   Updated: 2019/09/14 05:03:46 by wpoudre          ###   ########.fr       */
+/*   Created: 2019/09/29 15:57:01 by wpoudre           #+#    #+#             */
+/*   Updated: 2019/09/29 15:57:06 by wpoudre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memalloc(size_t size)
+t_list		*ft_lstnew(void const *content, size_t content_size)
 {
-	void	*new;
+	t_list	*list;
 
-	if (size == 0)
+	if (!(list = (t_list *)malloc(sizeof(*list))))
 		return (NULL);
-	new = malloc(size);
-	if (!new)
-		return (NULL);
-	ft_bzero(new, size);
-	return (new);
+	if (!content)
+	{
+		list->content = NULL;
+		list->content_size = 0;
+	}
+	else
+	{
+		if (!(list->content = malloc(content_size)))
+			return (NULL);
+		ft_memcpy(list->content, content, content_size);
+		list->content_size = content_size;
+	}
+	list->next = NULL;
+	return (list);
 }

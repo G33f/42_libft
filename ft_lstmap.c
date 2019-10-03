@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpoudre <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 05:03:38 by wpoudre           #+#    #+#             */
-/*   Updated: 2019/09/14 05:03:46 by wpoudre          ###   ########.fr       */
+/*   Created: 2019/10/03 18:51:30 by wpoudre           #+#    #+#             */
+/*   Updated: 2019/10/03 18:51:35 by wpoudre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memalloc(size_t size)
+t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	void	*new;
+	t_list	*ptr;
+	t_list	*new;
+	t_list	*tmp;
 
-	if (size == 0)
+	tmp = f(lst);
+	if (!(new = ft_lstnew(tmp->content, tmp->content_size)))
 		return (NULL);
-	new = malloc(size);
-	if (!new)
-		return (NULL);
-	ft_bzero(new, size);
-	return (new);
+	ptr = new;
+	lst = lst->next;
+	while (lst)
+	{
+		tmp = f(lst);
+		if (!(new->next = ft_lstnew(tmp->content, tmp->content_size)))
+			return (NULL);
+		lst = lst->next;
+		new = new->next;
+	}
+	return (ptr);
 }

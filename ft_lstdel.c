@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpoudre <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 05:03:38 by wpoudre           #+#    #+#             */
-/*   Updated: 2019/09/14 05:03:46 by wpoudre          ###   ########.fr       */
+/*   Created: 2019/09/29 18:40:13 by wpoudre           #+#    #+#             */
+/*   Updated: 2019/09/29 18:40:27 by wpoudre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memalloc(size_t size)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	void	*new;
-
-	if (size == 0)
-		return (NULL);
-	new = malloc(size);
-	if (!new)
-		return (NULL);
-	ft_bzero(new, size);
-	return (new);
+	if ((*alst)->next)
+		ft_lstdel(&(*alst)->next, del);
+	ft_lstdelone(&(*alst), del);
 }

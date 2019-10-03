@@ -12,10 +12,20 @@
 
 #include "libft.h"
 
-static	int	ft_len(char const *s, char c)
+static	void	ft_clean(char **str, int i)
 {
-	int		i;
-	int		len;
+	while (i >= 0)
+	{
+		free((*str + i));
+		i--;
+	}
+	free(str);
+}
+
+static	int		ft_len(char const *s, char c)
+{
+	int			i;
+	int			len;
 
 	i = 0;
 	len = 0;
@@ -29,12 +39,12 @@ static	int	ft_len(char const *s, char c)
 	return (len);
 }
 
-char		**ft_strsplit(char const *s, char c)
+char			**ft_strsplit(char const *s, char c)
 {
-	int		i;
-	int		j;
-	int		l;
-	char	**str;
+	int			i;
+	int			j;
+	int			l;
+	char		**str;
 
 	if (!s || !(str = (char **)malloc(sizeof(str) * (ft_cu_wards(s, c) + 1))))
 		return (NULL);
@@ -44,7 +54,10 @@ char		**ft_strsplit(char const *s, char c)
 	{
 		l = 0;
 		if (!(str[i] = ft_strnew(ft_len(&s[j], c) + 1)))
+		{
+			ft_clean(str, i);
 			return (NULL);
+		}
 		while (s[j] == c)
 			j++;
 		while (s[j] != c && s[j])

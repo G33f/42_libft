@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpoudre <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 05:03:38 by wpoudre           #+#    #+#             */
-/*   Updated: 2019/09/14 05:03:46 by wpoudre          ###   ########.fr       */
+/*   Created: 2019/09/29 18:52:10 by wpoudre           #+#    #+#             */
+/*   Updated: 2019/09/29 18:52:12 by wpoudre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memalloc(size_t size)
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	void	*new;
-
-	if (size == 0)
-		return (NULL);
-	new = malloc(size);
-	if (!new)
-		return (NULL);
-	ft_bzero(new, size);
-	return (new);
+	new->next = *alst;
+	*alst = new;
 }
