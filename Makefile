@@ -71,6 +71,9 @@ SRCS =	ft_bzero.c\
 		ft_lstadd.c\
 		ft_lstiter.c\
 		ft_lstmap.c\
+		ft_alpup.c\
+		ft_alpdown.c\
+		ft_lstnelem.c\
 
 OBJ =	ft_bzero.o\
 		ft_memccpy.o\
@@ -131,6 +134,9 @@ OBJ =	ft_bzero.o\
      	ft_lstadd.o\
      	ft_lstiter.o\
 		ft_lstmap.o\
+		ft_alpup.o\
+		ft_alpdown.o\
+		ft_lstnelem.o\
 
 FLAGS =	-Wall -Wextra -Werror -I ./libft.h
 
